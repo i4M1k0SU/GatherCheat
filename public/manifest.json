@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Gather Cheat",
+  "version": "1.0.0",
+  "description": "Gather.town cheat extension",
+  "homepage_url": "https://github.com/i4M1k0SU/GatherCheat",
+  "default_locale": "en",
+  "icons": {
+    "16": "img/16.png",
+    "24": "img/24.png",
+    "32": "img/32.png",
+    "48": "img/48.png",
+    "128": "img/128.png",
+    "256": "img/256.png",
+    "512": "img/512.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://app.gather.town/*"],
+      "js": ["js/main.js"],
+      "css": ["css/inject.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["js/inject.js", "js/main.js", "html/inject.html", "img/48.png"],
+      "matches": ["https://app.gather.town/*"]
+    }
+  ]
+}

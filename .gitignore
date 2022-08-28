@@ -1,0 +1,4 @@
+.DS_STORE
+/packages
+/public/js/*
+/node_modules

@@ -1,0 +1,6 @@
+{
+    "CURRENT_POS": {"message": "現在位置"},
+    "TELEPORT": {"message": "テレポート"},
+    "SPEED_MOD": {"message": "速度変更"},
+    "MISC": {"message": "その他"}
+}

@@ -1,0 +1,6 @@
+{
+    "CURRENT_POS": {"message": "Current Position"},
+    "TELEPORT": {"message": "Teleport"},
+    "SPEED_MOD": {"message": "Speed Mod"},
+    "MISC": {"message": "Misc"}
+}

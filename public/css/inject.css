@@ -1,0 +1,122 @@
+body {
+    overflow: hidden;
+}
+
+#gather-cheat-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    background-color: rgba(0, 0, 0, 0.6);
+    user-select: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 300px;
+}
+
+#gather-cheat-menu * {
+    color: #fff;
+}
+
+/* 開閉ボタン */
+#close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 13px;
+    transition: background-color .2s ease;
+}
+
+#close-button:hover {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+#close-button::before,
+#close-button::after {
+	display: block;
+	content: '';
+	background-color: #fff;
+	position: absolute;
+	width: 10px;
+	height: 2px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#close-button::before {
+    width: 2px;
+    height: 10px;
+    transform: translate(-50%, -50%);
+    transition: transform .2s ease;
+}
+
+#gather-cheat-menu.open #close-button::before {
+    transform: translate(-50%, -50%) scaleY(0);
+}
+
+/* タイトルバー */
+#gather-cheat-menu h1 {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    padding: 5px 8px;
+    font-size: 14px;
+}
+
+#gather-cheat-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+#gather-cheat-menu h1,
+#gather-cheat-menu h2 {
+    font-weight: bold;
+}
+
+/* 本体 */
+#menu-content {
+    max-height: 0;
+    transition: max-height .2s ease;
+    overflow: hidden;
+}
+
+#gather-cheat-menu.open #menu-content {
+    max-height: var(--scroll-height);
+}
+
+#menu-content > section {
+    padding: 8px 16px;
+}
+
+#menu-content > section > div, #menu-content > section > p {
+    padding-top: 4px;
+}
+
+#menu-content > section > div > * {
+    margin-right: 4px;
+}
+
+#menu-content button {
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
+#menu-content button:hover {
+    opacity: 0.6;
+}
+
+#menu-content input[type=checkbox] {
+    transform: scale(1.5);
+}
+
+#menu-content label {
+    font-weight: bold;
+}
+
+#menu-content label input[type=checkbox] {
+    margin-right: 8px;
+}

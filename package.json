@@ -1,0 +1,30 @@
+{
+  "name": "gather-cheat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "i4M1k0SU <i4m1k0su@i4m1k0.su>",
+  "license": "MIT",
+  "description": "Gather.town cheat extension",
+  "scripts": {
+    "build": "npm run clean && NODE_ENV=production webpack",
+    "build:package": "ts-node scripts/make_package.ts",
+    "watch": "webpack -w",
+    "clean": "rimraf './public/js/*'"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ],
+  "devDependencies": {
+    "@types/archiver": "^5.3.1",
+    "@types/chrome": "^0.0.195",
+    "@types/node": "^18.7.13",
+    "@types/webpack": "^5.28.0",
+    "archiver": "^5.3.1",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^9.3.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.2",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
