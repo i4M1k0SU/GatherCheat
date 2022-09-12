@@ -1,3 +1,5 @@
+import {DATA_I18N_KEY} from '../constants';
+
 const gatherCheatMenu = document.getElementById('gather-cheat-menu') as HTMLDivElement;
 const titleBar = document.getElementById('title-bar') as HTMLElement;
 const currentPosGroup = document.getElementById('current-pos-group') as HTMLDivElement;
@@ -86,6 +88,7 @@ const getGroupElement = (group: Groups) => {
 export const addButton = (group: Groups, name: string, func: (button: HTMLButtonElement) => void) => {
     const button = document.createElement('button');
     button.innerText = name;
+    button.setAttribute(DATA_I18N_KEY, name);
     button.addEventListener('click', () => {func(button)});
     getGroupElement(group).append(button);
 };
@@ -98,9 +101,13 @@ export const addCheckbox = (group: Groups, name: string, checked: boolean, func:
     checkbox.addEventListener('change', () => {func(checkbox.checked)});
     const label = document.createElement('label');
     label.htmlFor = name;
-    label.innerText = name;
-    label.prepend(checkbox);
+    label.append(checkbox);
     getGroupElement(group).append(label);
+    const span = document.createElement('span');
+    span.innerText = name;
+    span.setAttribute(DATA_I18N_KEY, name);
+    // MutationObserverに反応させるためにGroupElementにappendした後に行う
+    label.append(span);
 };
 
 export const visibleMenu = () => {gatherCheatMenu.style.visibility = 'visible'};

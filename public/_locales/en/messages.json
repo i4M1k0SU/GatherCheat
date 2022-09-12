@@ -1,6 +1,14 @@
 {
-    "CURRENT_POS": {"message": "Current Position"},
-    "TELEPORT": {"message": "Teleport"},
-    "SPEED_MOD": {"message": "Speed Mod"},
-    "MISC": {"message": "Misc"}
+    "AUTO":         {"message": "Auto"},
+    "CURRENT":      {"message": "Current"},
+    "CURRENT_POS":  {"message": "Current Position"},
+    "ENABLE_OOB":   {"message": "Enable OoB"},
+    "GOKART_GEN":   {"message": "GOKART Gen"},
+    "MAIN_PINP":    {"message": "Main PinP"},
+    "MISC":         {"message": "Misc"},
+    "RANDOM":       {"message": "Random"},
+    "SAVE":         {"message": "Save"},
+    "SPEED_MOD":    {"message": "Speed Mod"},
+    "STOP":         {"message": "Stop"},
+    "TELEPORT":     {"message": "Teleport"}
 }

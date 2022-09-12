@@ -2,6 +2,7 @@ import {addButton, addCheckbox, visibleMenu, setCurrentSpeed, viewInit} from './
 import * as GatherHook from './modules/gather_hook';
 import * as CspHook from './modules/csp_hook';
 import {getCustomTeleportPos, getMenuIsOpened, getMenuPos, setMenuPos, setCustomTeleportPos, setMenuIsOpened} from './modules/localstorage';
+import {DATA_I18N_KEY} from './constants';
 
 const randomWarp = () => {
     const maps = Object.values(gameSpace.mapState);
@@ -27,7 +28,7 @@ const main = () => {
         getMenuIsOpened(),
         (isOpened: boolean) => setMenuIsOpened(isOpened)
     );
-    // addButton('currentPosGroup', 'Save', () => {
+    // addButton('currentPosGroup', 'SAVE', () => {
     //     const label = window.prompt('Label');
     //     if (label) {
     //         const {id: mapId} = gameSpace.getCurrentMap();
@@ -37,17 +38,17 @@ const main = () => {
     // });
 
     // Teleport
-    addButton('teleport', 'Auto', button => {
+    addButton('teleport', 'AUTO', button => {
         if (autoWarpIntervalId !== null) {
-            button.innerText = 'Auto';
+            button.setAttribute(DATA_I18N_KEY, 'AUTO');
             window.clearInterval(autoWarpIntervalId);
             autoWarpIntervalId = null;
             return;
         }
-        button.innerText = 'Stop';
+        button.setAttribute(DATA_I18N_KEY, 'STOP');
         autoWarpIntervalId = window.setInterval(() => {randomWarp()}, 2000);
     });
-    addButton('teleport', 'Random', () => {randomWarp()});
+    addButton('teleport', 'RANDOM', () => {randomWarp()});
     // getCustomTeleportPos(game.spaceId).forEach(pos => {
     //     addButton('customTeleport', pos.label, () => {game.teleport(pos.mapId, pos.x, pos.y)});
     // });
@@ -57,9 +58,9 @@ const main = () => {
         setCurrentSpeed(s);
     }));
     // Misc
-    addCheckbox('misc', 'Enable OoB', false, checked => {checked ? GatherHook.attachMove() : GatherHook.detachMove()});
-    addButton('misc', 'GOKART Gen', () => {game.interact('GOKART')});
-    addButton('misc', 'Main PinP', () => {document.querySelector<HTMLVideoElement>('.GameCanvasContainer-main video')?.requestPictureInPicture()});
+    addCheckbox('misc', 'ENABLE_OOB', false, checked => {checked ? GatherHook.attachMove() : GatherHook.detachMove()});
+    addButton('misc', 'GOKART_GEN', () => {game.interact('GOKART')});
+    addButton('misc', 'MAIN_PINP', () => {document.querySelector<HTMLVideoElement>('.GameCanvasContainer-main video')?.requestPictureInPicture()});
 };
 
 main();

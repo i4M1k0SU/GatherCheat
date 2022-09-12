@@ -1,6 +1,14 @@
 {
-    "CURRENT_POS": {"message": "現在位置"},
-    "TELEPORT": {"message": "テレポート"},
-    "SPEED_MOD": {"message": "速度変更"},
-    "MISC": {"message": "その他"}
+    "AUTO":         {"message": "自動"},
+    "CURRENT":      {"message": "現在"},
+    "CURRENT_POS":  {"message": "現在位置"},
+    "ENABLE_OOB":   {"message": "壁抜け"},
+    "GOKART_GEN":   {"message": "ゴーカート生成"},
+    "MAIN_PINP":    {"message": "メイン画面PinP"},
+    "MISC":         {"message": "その他"},
+    "RANDOM":       {"message": "ランダム"},
+    "SAVE":         {"message": "保存"},
+    "SPEED_MOD":    {"message": "速度変更"},
+    "STOP":         {"message": "停止"},
+    "TELEPORT":     {"message": "テレポート"}
 }
