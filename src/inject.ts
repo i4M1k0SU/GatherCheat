@@ -3,6 +3,10 @@ import * as GatherHook from './modules/gather_hook';
 import * as CspHook from './modules/csp_hook';
 import {getCustomTeleportPos, getMenuIsOpened, getMenuPos, setMenuPos, setCustomTeleportPos, setMenuIsOpened} from './modules/localstorage';
 import {DATA_I18N_KEY} from './constants';
+import {sleep} from './util';
+
+// state
+let autoWarpIntervalId: number | null = null;
 
 const randomWarp = () => {
     const maps = Object.values(gameSpace.mapState);
@@ -12,15 +16,8 @@ const randomWarp = () => {
     game.teleport(mapId, x, y);
 };
 
-let autoWarpIntervalId: number | null = null;
-
-const main = () => {
+const main = async() => {
     CspHook.attach();
-    const removeHeartbeatEvent = game.subscribeToEvent('serverHeartbeat', () => {
-        visibleMenu();
-        GatherHook.attachGetMyPredictedPos();
-        removeHeartbeatEvent();
-    });
 
     viewInit(
         getMenuPos(),
@@ -61,6 +58,19 @@ const main = () => {
     addCheckbox('misc', 'ENABLE_OOB', false, checked => {checked ? GatherHook.attachMove() : GatherHook.detachMove()});
     addButton('misc', 'GOKART_GEN', () => {game.interact('GOKART')});
     addButton('misc', 'MAIN_PINP', () => {document.querySelector<HTMLVideoElement>('.GameCanvasContainer-main video')?.requestPictureInPicture()});
+
+    // ページ読み込み後のタイミングではgameがないケースがある
+    for (let i = 0; i < 10; i++) {
+        if ('game' in window) {
+            const removeHeartbeatEvent = game.subscribeToEvent('serverHeartbeat', () => {
+                visibleMenu();
+                GatherHook.attachGetMyPredictedPos();
+                removeHeartbeatEvent();
+            });
+            break;
+        }
+        await sleep(2000);
+    }
 };
 
 main();
