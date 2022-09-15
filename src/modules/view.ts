@@ -1,4 +1,5 @@
 import {DATA_I18N_KEY} from '../constants';
+import {debounce} from '../util';
 
 const gatherCheatMenu = document.getElementById('gather-cheat-menu') as HTMLDivElement;
 const titleBar = document.getElementById('title-bar') as HTMLElement;
@@ -15,10 +16,17 @@ const currentYPos = document.getElementById('current-y-pos') as HTMLSpanElement;
 const currentSpeed = document.getElementById('current-speed') as HTMLSpanElement;
 
 const pointerRelative = {x: 0, y: 0};
+const pointerViewportPosToMenuAbsolutePos = (x: number, y: number) => {
+    return {
+        x: Math.min(Math.max(x - pointerRelative.x, 0), document.body.clientWidth - gatherCheatMenu.scrollWidth),
+        y: Math.min(Math.max(y - pointerRelative.y, 0), document.body.clientHeight - gatherCheatMenu.scrollHeight)
+    };
+};
 
 const onMouseMove = (e: MouseEvent) => {
-    gatherCheatMenu.style.top = (e.clientY - pointerRelative.y) + 'px';
-    gatherCheatMenu.style.left = (e.clientX - pointerRelative.x) + 'px';
+    const {x, y} = pointerViewportPosToMenuAbsolutePos(e.clientX, e.clientY);
+    gatherCheatMenu.style.top = y + 'px';
+    gatherCheatMenu.style.left = x + 'px';
 };
 
 type MenuPos = {x: number, y: number};
@@ -36,10 +44,15 @@ export const viewInit = (
         });
     });
     resizeObserver.observe(menuContent, {box : 'border-box'});
+    // resizeでウィンドウ外に出ていかないようにする
+    window.addEventListener('resize', debounce(() => {
+        gatherCheatMenu.style.top = Math.min(gatherCheatMenu.offsetTop, document.body.clientHeight - gatherCheatMenu.scrollHeight) + 'px';
+        gatherCheatMenu.style.left = Math.min(gatherCheatMenu.offsetLeft, document.body.clientWidth - gatherCheatMenu.scrollWidth) + 'px';
+    }));
 
     // 初期位置
-    gatherCheatMenu.style.top = menuPos.y + 'px';
-    gatherCheatMenu.style.left = menuPos.x + 'px';
+    gatherCheatMenu.style.top = Math.min(menuPos.y, document.body.clientHeight - gatherCheatMenu.scrollHeight) + 'px';
+    gatherCheatMenu.style.left = Math.min(menuPos.x, document.body.clientWidth - gatherCheatMenu.scrollWidth) + 'px';
     // 初期展開
     if (menuIsOpened) {
         gatherCheatMenu.classList.add('open');
@@ -54,7 +67,7 @@ export const viewInit = (
     
     titleBar.addEventListener('mouseup', e => {
         document.removeEventListener('mousemove', onMouseMove);
-        menuPosChanged({x: e.clientX - pointerRelative.x, y: e.clientY - pointerRelative.y});
+        menuPosChanged(pointerViewportPosToMenuAbsolutePos(e.clientX, e.clientY));
     });
 
     closeButton.addEventListener('click', () => {
