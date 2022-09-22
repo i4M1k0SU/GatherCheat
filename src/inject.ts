@@ -57,7 +57,7 @@ const main = async() => {
     // Misc
     addCheckbox('misc', 'ENABLE_OOB', false, checked => {checked ? GatherHook.attachMove() : GatherHook.detachMove()});
     addButton('misc', 'GOKART_GEN', () => {game.interact('GOKART')});
-    addButton('misc', 'MAIN_PINP', () => {document.querySelector<HTMLVideoElement>('.GameCanvasContainer-main video')?.requestPictureInPicture()});
+    document.pictureInPictureEnabled && addButton('misc', 'MAIN_PINP', () => {document.querySelector<HTMLVideoElement>('.GameCanvasContainer-main video')?.requestPictureInPicture()});
 
     // ページ読み込み後のタイミングではgameがないケースがある
     for (let i = 0; i < 10; i++) {
