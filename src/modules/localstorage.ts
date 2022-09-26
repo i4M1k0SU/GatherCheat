@@ -2,6 +2,7 @@ const PREFIX = 'GATHER-CHEAT-MENU_';
 const MENU_POS = PREFIX + 'memu_pos';
 const MENU_IS_OPENED =  PREFIX + 'menu_is_opened';
 const CUSTOM_TELEPORT_POS = PREFIX + 'custom_teleport_pos';
+const OOB_IS_ENABLED = PREFIX + 'oob_is_enabled';
 
 export const getMenuPos = (): {x: number, y: number} => {
     const value = localStorage.getItem(MENU_POS);
@@ -37,4 +38,12 @@ export const setCustomTeleportPos = (spaceId: string, value: CustomTeleportPos) 
     const current = getCustomTeleportPos(spaceId);
     current.push(value);
     localStorage.setItem(CUSTOM_TELEPORT_POS + '_' + spaceId, JSON.stringify(current));
+};
+
+export const getOoBIsEnabled = (): boolean => {
+    return localStorage.getItem(OOB_IS_ENABLED) === '1';
+}
+
+export const setOoBIsEnabled = (value: boolean) => {
+    localStorage.setItem(OOB_IS_ENABLED, value ? '1' : '0');
 };

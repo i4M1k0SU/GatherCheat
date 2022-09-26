@@ -1,9 +1,11 @@
 import {addButton, addCheckbox, visibleMenu, setCurrentSpeed, viewInit} from './modules/view';
 import * as GatherHook from './modules/gather_hook';
 import * as CspHook from './modules/csp_hook';
-import {getCustomTeleportPos, getMenuIsOpened, getMenuPos, setMenuPos, setCustomTeleportPos, setMenuIsOpened} from './modules/localstorage';
+import {getCustomTeleportPos, getMenuIsOpened, getMenuPos, setMenuPos, setCustomTeleportPos, setMenuIsOpened, setOoBIsEnabled, getOoBIsEnabled} from './modules/localstorage';
 import {DATA_I18N_KEY} from './constants';
 import {sleep} from './util';
+
+const MAX_CNT = 10;
 
 // state
 let autoWarpIntervalId: number | null = null;
@@ -17,6 +19,14 @@ const randomWarp = () => {
 };
 
 const main = async() => {
+    // ページ読み込み後のタイミングではgame, gameSpaceがないケースがある
+    for (let i = 0; i < MAX_CNT; i++) {
+        if ('game' in window && 'gameSpace' in window && 'newrelic' in window) {
+            break;
+        }
+        await sleep(1500);
+    }
+
     CspHook.attach();
 
     viewInit(
@@ -50,27 +60,25 @@ const main = async() => {
     //     addButton('customTeleport', pos.label, () => {game.teleport(pos.mapId, pos.x, pos.y)});
     // });
     // Speed mod
+    GatherHook.attachGetMyPredictedPos();
     [1, 2, 3, 4].forEach(s => addButton('speed', 'x' + s, () => {
         game.setSpeedModifier(s);
         setCurrentSpeed(s);
     }));
     // Misc
-    addCheckbox('misc', 'ENABLE_OOB', false, checked => {checked ? GatherHook.attachMove() : GatherHook.detachMove()});
+    const ooBIsEnabled = getOoBIsEnabled();
+    ooBIsEnabled && GatherHook.attachMove();
+    addCheckbox('misc', 'ENABLE_OOB', ooBIsEnabled, checked => {
+        checked ? GatherHook.attachMove() : GatherHook.detachMove();
+        setOoBIsEnabled(checked);
+    });
     addButton('misc', 'GOKART_GEN', () => {game.interact('GOKART')});
     document.pictureInPictureEnabled && addButton('misc', 'MAIN_PINP', () => {document.querySelector<HTMLVideoElement>('.GameCanvasContainer-main video')?.requestPictureInPicture()});
 
-    // ページ読み込み後のタイミングではgameがないケースがある
-    for (let i = 0; i < 10; i++) {
-        if ('game' in window) {
             const removeHeartbeatEvent = game.subscribeToEvent('serverHeartbeat', () => {
                 visibleMenu();
-                GatherHook.attachGetMyPredictedPos();
                 removeHeartbeatEvent();
             });
-            break;
-        }
-        await sleep(2000);
-    }
 };
 
 main();
