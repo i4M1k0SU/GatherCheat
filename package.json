@@ -16,14 +16,14 @@
   ],
   "devDependencies": {
     "@types/archiver": "^5.3.1",
-    "@types/chrome": "^0.0.196",
-    "@types/node": "^18.7.16",
+    "@types/chrome": "^0.0.197",
+    "@types/node": "^18.8.0",
     "@types/webpack": "^5.28.0",
     "archiver": "^5.3.1",
     "rimraf": "^3.0.2",
-    "ts-loader": "^9.3.1",
+    "ts-loader": "^9.4.1",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.3",
+    "typescript": "^4.8.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   }
