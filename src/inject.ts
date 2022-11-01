@@ -56,9 +56,9 @@ const main = async() => {
         autoWarpIntervalId = window.setInterval(() => {randomWarp()}, 2000);
     });
     addButton('teleport', 'RANDOM', () => {randomWarp()});
-    // getCustomTeleportPos(game.spaceId).forEach(pos => {
-    //     addButton('customTeleport', pos.label, () => {game.teleport(pos.mapId, pos.x, pos.y)});
-    // });
+    getCustomTeleportPos(game.spaceId).forEach(pos => {
+        addButton('customTeleport', pos.label, () => {game.teleport(pos.mapId, pos.x, pos.y)});
+    });
     // Speed mod
     GatherHook.attachGetMyPredictedPos();
     [1, 2, 3, 4].forEach(s => addButton('speed', 'x' + s, () => {
