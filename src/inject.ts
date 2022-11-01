@@ -75,10 +75,10 @@ const main = async() => {
     addButton('misc', 'GOKART_GEN', () => {game.interact('GOKART')});
     document.pictureInPictureEnabled && addButton('misc', 'MAIN_PINP', () => {document.querySelector<HTMLVideoElement>('.GameCanvasContainer-main video')?.requestPictureInPicture()});
 
-            const removeHeartbeatEvent = game.subscribeToEvent('serverHeartbeat', () => {
-                visibleMenu();
-                removeHeartbeatEvent();
-            });
+    const removeHeartbeatEvent = game.subscribeToEvent('serverHeartbeat', () => {
+        visibleMenu();
+        removeHeartbeatEvent();
+    });
 };
 
 main();
