@@ -56,8 +56,19 @@ export const detachMove = () => {
 
 export const attachGetMyPredictedPos = () => {
     gameSpaceGetMyPredictedPosOrig = gameSpace.getMyPredictedPos;
-    gameSpace.getMyPredictedPos = function () {
-        const result = gameSpaceGetMyPredictedPosOrig.call(this);
+    gameSpace.getMyPredictedPos = function (arg) {
+        // 壁衝突判定を誤魔化す
+        if (arg?.length && !arg[0].stopped) {
+            const currentPos = gameSpaceGetMyPredictedPosOrig.call(this);
+            const nextPos = gameSpaceGetMyPredictedPosOrig.call(this, arg);
+            // 座標が変わる時は衝突しないのでそのまま
+            if (nextPos.x !== currentPos.x || nextPos.y !== currentPos.y) {
+                return nextPos;
+            }
+
+            return {x: -1, y: -1};
+        }
+        const result = gameSpaceGetMyPredictedPosOrig.call(this, arg);
         if (result) {
             setCurrentPos({mapId: result.map, x: result.x, y: result.y});
             if (typeof result.speedModifier === 'number') {

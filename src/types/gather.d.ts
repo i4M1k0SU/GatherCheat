@@ -9,7 +9,10 @@ declare const gameSpace: {
         id: string;
         dimensions: [number, number];
     }};
-    getMyPredictedPos: () => {
+    getMyPredictedPos: (arg?: [{
+        dir: Direction;
+        stopped: boolean;
+    }]) => {
         x: number;
         y: number;
         map?: string;
@@ -24,6 +27,24 @@ declare const gameSpace: {
             targetX: number;
             targetY: number;
         }[];
+    };
+    getCurrentPrivateArea: () => string;
+    getPrivateAreaById: (privateAreaId: string) => {
+        allowedUsers: {
+            users: string[];
+        };
+        colored?: boolean;
+        isInMeeting?: boolean;
+        capacity?: number;
+        isDesk?: boolean;
+        name: string;
+        nookCoords: {
+            coords: {x: number, y: number}[];
+        };
+        requestedUsers?: {
+            user: string[];
+        };
+        restricted?: boolean;
     };
 }
 
@@ -53,4 +74,5 @@ declare const game: {
     move: (dir: Direction, stopped: boolean, targetId: number) => void;
     interact: (objId: string, mapId?: string, data?: {[key: string]: string | number | boolean}) => void;
     subscribeToEvent: (event: string, callback: (args: any) => void) => () => void;
+    setMapNooks: (mapId: string, nooks: {[privateAreaId: string]: {restricted: boolean}}) => void;
 }
