@@ -18,7 +18,7 @@ declare const gameSpace: {
         map?: string;
         speedModifier?: number;
     };
-    getCurrentMap: () => {
+    getMyPlayerMap: () => {
         id: string;
         portals: {
             x: number;

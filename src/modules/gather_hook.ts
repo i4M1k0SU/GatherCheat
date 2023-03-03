@@ -11,7 +11,7 @@ export const attachMove = () => {
             return gameMoveOrig.call(this, dir, stopped, targetId);
         }
 
-        const {id: mapId, portals} = gameSpace.getCurrentMap();
+        const {id: mapId, portals} = gameSpace.getMyPlayerMap();
         const {x: beforeX, y: beforeY} = gameSpace.getMyPredictedPos();
         const result = gameMoveOrig.call(this, dir, stopped, targetId);
         const {x: afterX, y: afterY} = gameSpace.getMyPredictedPos();
