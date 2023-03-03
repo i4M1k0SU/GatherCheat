@@ -2,6 +2,7 @@ import {addButton, addCheckbox, visibleMenu, setCurrentSpeed, viewInit} from './
 import * as GatherHook from './modules/gather_hook';
 import * as CspHook from './modules/csp_hook';
 import {getCustomTeleportPos, getMenuIsOpened, getMenuPos, setMenuPos, setCustomTeleportPos, setMenuIsOpened, setOoBIsEnabled, getOoBIsEnabled} from './modules/localstorage';
+import {setMuteButtonForPinP} from './modules/media_session';
 import {DATA_I18N_KEY} from './constants';
 import {sleep} from './util';
 
@@ -77,6 +78,7 @@ const main = async() => {
 
     const removeHeartbeatEvent = game.subscribeToEvent('serverHeartbeat', () => {
         visibleMenu();
+        setMuteButtonForPinP();
         removeHeartbeatEvent();
     });
 };
