@@ -1,6 +1,6 @@
 {
   "name": "gather-cheat",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "author": "i4M1k0SU <i4m1k0su@i4m1k0.su>",
   "license": "MIT",
@@ -9,22 +9,22 @@
     "build": "npm run clean && NODE_ENV=production webpack",
     "build:package": "ts-node scripts/make_package.ts",
     "watch": "webpack -w",
-    "clean": "rimraf './public/js/*'"
+    "clean": "rimraf ./public/js/*"
   },
   "browserslist": [
     "last 2 Chrome versions"
   ],
   "devDependencies": {
-    "@types/archiver": "^5.3.1",
-    "@types/chrome": "^0.0.219",
-    "@types/node": "^18.14.5",
-    "@types/webpack": "^5.28.0",
+    "@types/archiver": "^5.3.2",
+    "@types/chrome": "^0.0.237",
+    "@types/node": "^18.16.16",
+    "@types/webpack": "^5.28.1",
     "archiver": "^5.3.1",
-    "rimraf": "^4.2.0",
-    "ts-loader": "^9.4.2",
+    "rimraf": "^5.0.1",
+    "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.5",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "typescript": "^5.1.3",
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.3"
   }
 }

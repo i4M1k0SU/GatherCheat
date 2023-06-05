@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Gather Cheat",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Gather.town cheat extension",
   "homepage_url": "https://github.com/i4M1k0SU/GatherCheat",
   "default_locale": "en",

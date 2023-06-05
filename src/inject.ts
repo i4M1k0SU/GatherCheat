@@ -73,7 +73,6 @@ const main = async() => {
         checked ? GatherHook.attachMove() : GatherHook.detachMove();
         setOoBIsEnabled(checked);
     });
-    addButton('misc', 'GOKART_GEN', () => {game.interact('GOKART')});
     document.pictureInPictureEnabled && addButton('misc', 'MAIN_PINP', () => {document.querySelector<HTMLVideoElement>('.GameCanvasContainer-main video')?.requestPictureInPicture()});
 
     const removeHeartbeatEvent = game.subscribeToEvent('serverHeartbeat', () => {
