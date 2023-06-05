@@ -3,7 +3,6 @@
     "CURRENT":      {"message": "Current"},
     "CURRENT_POS":  {"message": "Current Position"},
     "ENABLE_OOB":   {"message": "Enable OoB"},
-    "GOKART_GEN":   {"message": "GOKART Gen"},
     "MAIN_PINP":    {"message": "Main PinP"},
     "MISC":         {"message": "Misc"},
     "RANDOM":       {"message": "Random"},

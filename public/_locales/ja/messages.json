@@ -3,7 +3,6 @@
     "CURRENT":      {"message": "現在"},
     "CURRENT_POS":  {"message": "現在位置"},
     "ENABLE_OOB":   {"message": "壁抜け"},
-    "GOKART_GEN":   {"message": "ゴーカート生成"},
     "MAIN_PINP":    {"message": "メイン画面PinP"},
     "MISC":         {"message": "その他"},
     "RANDOM":       {"message": "ランダム"},
